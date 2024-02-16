@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,7 +28,7 @@ public class EmployeesController {
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee saveEmployee(@RequestBody NewEmployeeDTO newEmployeeDTO) throws Exception {
+    public Employee saveEmployee(@RequestBody @Validated NewEmployeeDTO newEmployeeDTO, BindingResult validation) throws Exception {
         return employeesService.save(newEmployeeDTO);
     }
     @PutMapping("/{employeeId}")
@@ -39,4 +40,6 @@ public class EmployeesController {
     public void findAndDelete(@PathVariable int employeeId) {
         this.employeesService.findAndDelete(employeeId);
     }
+
+
 }
