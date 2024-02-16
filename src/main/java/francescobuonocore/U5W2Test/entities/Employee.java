@@ -22,4 +22,12 @@ public class Employee {
     private String surname;
 
     private String email;
+
+    public Employee(String username, String name, String surname, String email) {
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+
+    }
 }
